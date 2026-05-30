@@ -1,5 +1,5 @@
 # Impact
-
+![Image](https://cdn.jsdelivr.net/gh/repixelhouse/personal-cdn@main/portfolio/thumbnail.jpg)
 Impact turns fuzzy product ideas into a crisp, shareable *impact brief* in minutes — know your work’s worth in under 5 minutes. Capture initiative context, pick the right metrics, estimate delivery resources, pull comparable benchmarks, and generate scenario-based outputs you can export and circulate with stakeholders.
 
 ## What you get
