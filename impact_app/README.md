@@ -1,11 +1,11 @@
 # Impact App
 
-Aplikasi Next.js untuk membuat *impact brief*:
-- Multi-draft di Home (bisa lanjutkan/hapus).
-- Stepper wizard dari Ringkasan → Metrik → Baselines/Resources → Benchmark → Skenario & Output.
-- Output berupa dashboard + ringkasan yang bisa diekspor.
+Next.js app for generating an *impact brief* that’s decision-ready:
+- Draft-first workflow (create, continue, delete) saved in your browser.
+- Guided wizard from Summary → Metrics → Resources/Baselines → Benchmark → Scenarios & Output.
+- Dashboard-style output and rendered markdown that you can export and share.
 
-## Menjalankan aplikasi
+## Run the app
 
 ```bash
 npm install
@@ -13,59 +13,59 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Buka: http://localhost:3000
+Open: http://localhost:3000
 
 ## Environment variables
 
-Copy `.env.example` ke `.env.local` lalu isi.
+Copy `.env.example` to `.env.local` and fill the values.
 
-Wajib (untuk benchmark live search via Vertex AI grounding):
+Required (to enable benchmark live search via Vertex AI grounding):
 - `GCP_PROJECT_ID`
 - `GCP_LOCATION` (default `us-central1`)
-- `GCP_SERVICE_ACCOUNT_JSON` (service account JSON dalam bentuk string 1 baris)
+- `GCP_SERVICE_ACCOUNT_JSON` (service account JSON as a single-line string)
 - `VERTEX_MODEL`
 
-Opsional:
+Optional:
 - `NEXT_PUBLIC_ANALYTICS_ENDPOINT` (default `/api/events`)
 
-Jika env benchmark tidak diisi, aplikasi tetap bisa digunakan, namun benchmark perlu ditambahkan secara manual.
+If benchmark env vars are not set, the app still works, but benchmarks must be added manually.
 
-## Alur penggunaan
+## User flow
 
 1. **Home**
-   - `New brief` membuat draft baru.
-   - Draft tersimpan di localStorage browser.
+   - `New brief` creates a new draft.
+   - Drafts are stored in the browser localStorage so you can pick up where you left off.
 
-2. **Ringkasan**
-   - Isi informasi inti (goal, template type, product type, target users, timeline, release approach, owner, stakeholders).
+2. **Summary**
+   - Capture the core initiative context (goal, template, product type, target users, timeline, release approach, owner, stakeholders).
 
-3. **Metrik**
-   - Aplikasi menandai metrik yang direkomendasikan (badge “Direkomendasikan”) berdasarkan Ringkasan, tetapi user bisa memilih metrik mana saja.
+3. **Metrics**
+   - The app flags recommended metrics based on the Summary (“Recommended” badge), but you stay in control and can select any metrics.
 
-4. **Resources (Wajib)**
-   - Eng effort / Design effort / PM-Other effort dalam **person-weeks**.
-   - Fully-loaded cost rate dalam **IDR / person-week**.
-   - Dipakai untuk estimasi cost dan proxy execution complexity.
+4. **Resources (Required)**
+   - Engineering / Design / PM-Other effort in **person-weeks**.
+   - Fully-loaded cost rate in **IDR / person-week**.
+   - Used to estimate cost and as a practical proxy for execution complexity.
 
-   Definisi cepat person-week:
-   - 1 person-week = 1 orang bekerja full-time selama 1 minggu.
-   - Contoh: 2 engineer × 3 minggu = 6 person-weeks.
+   Person-week quick definition:
+   - 1 person-week = 1 person working full-time for 1 week.
+   - Example: 2 engineers × 3 weeks = 6 person-weeks.
 
-5. **Baselines (Opsional)**
-   - Bisa ditutup (accordion) karena opsional.
-   - Di dalamnya tiap metric baseline juga accordion per metrik.
+5. **Baselines (Optional)**
+   - The entire baselines section can be collapsed (accordion) since it is optional.
+   - Each metric baseline is also collapsible.
 
 6. **Benchmark**
-   - Live search berjalan otomatis saat masuk ke step Benchmark (jika env tersedia).
-   - Form “Tambah benchmark manual” tersedia untuk menambah sumber sendiri.
+   - Live search runs automatically when you enter the Benchmark step (if env vars are set).
+   - Manual benchmark form is available to add your own sources when needed.
 
-7. **Skenario & Output**
-   - Fully generated (tanpa input).
-   - Menampilkan scenario dashboard `Worst / Base / Best`.
-   - Menampilkan output markdown yang sudah dirender.
-   - Tombol export mengunduh output.
+7. **Scenarios & Output**
+   - Fully generated (no inputs).
+   - Shows the scenario dashboard across `Worst / Base / Best`.
+   - Shows rendered markdown output ready for stakeholder sharing.
+   - Export downloads the final output.
 
-## Testing & build
+## Tests & build
 
 ```bash
 npm test
